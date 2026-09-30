@@ -1,7 +1,7 @@
-import { ArrowRight, Mail } from "lucide-react";
+import { ArrowRight, FileText, Mail } from "lucide-react";
 import type { HeroContent, HeroStatus } from "@/types";
 import { experiences } from "./experience";
-import { site } from "./site";
+import { hasValue, site } from "./site";
 
 /**
  * Current role badge, derived from the most recent verified experience
@@ -42,12 +42,12 @@ export const hero: HeroContent = {
   ],
 
   /**
-   * Exactly two CTAs.
+   * The resume CTA renders only while site.resumePath points at a real
+   * file; the Hero filters out any `pending` entry, so emptying that value
+   * removes the button with no component change.
    *
-   * TODO(content): a "Download resume" CTA can be restored once
-   * site.resumePath points at a real PDF in /public.
-   * No GitHub CTA: the URL has not been verified.
-   * No phone CTA: intentionally not a public call to action.
+   * No GitHub CTA here: the hero stays to three actions. No phone CTA:
+   * intentionally never a public call to action.
    */
   ctas: [
     {
@@ -61,6 +61,14 @@ export const hero: HeroContent = {
       href: "#contact",
       variant: "secondary",
       icon: Mail,
+    },
+    {
+      label: "View Resume",
+      href: site.resumePath,
+      variant: "ghost",
+      icon: FileText,
+      newTab: true,
+      pending: !hasValue(site.resumePath),
     },
   ],
 

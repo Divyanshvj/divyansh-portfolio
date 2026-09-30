@@ -31,6 +31,8 @@ export interface HeroCta {
   icon?: LucideIcon;
   /** True when href is still a TODO and the CTA must not render. */
   pending?: boolean;
+  /** Opens in a new tab with the usual security attributes. */
+  newTab?: boolean;
 }
 
 /** Verified current-role badge shown beside the hero. */

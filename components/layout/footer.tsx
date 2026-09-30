@@ -1,18 +1,20 @@
-import { Mail } from "lucide-react";
+import { FileText, Mail } from "lucide-react";
 import { Container } from "@/components/ui/container";
-import { LinkedInIcon } from "@/components/ui/brand-icons";
+import { GitHubIcon, LinkedInIcon } from "@/components/ui/brand-icons";
 import { navItems } from "@/content/navigation";
 import { hasValue, site } from "@/content/site";
 
 /**
- * Minimal footer. Only verified contact channels appear - there is no
- * GitHub link because that URL has not been provided.
+ * Minimal footer. Each channel renders only when its value is configured
+ * in content/site.ts, so an unset GitHub URL simply produces no link.
  */
 export function Footer() {
   const email = hasValue(site.email) ? site.email : null;
   const linkedin = hasValue(site.socials.linkedin)
     ? site.socials.linkedin
     : null;
+  const github = hasValue(site.socials.github) ? site.socials.github : null;
+  const resume = hasValue(site.resumePath) ? site.resumePath : null;
 
   return (
     <footer className="mt-auto border-t border-line py-12 md:py-14">
@@ -49,7 +51,7 @@ export function Footer() {
           </nav>
 
           {/* Contact */}
-          {(email || linkedin) && (
+          {(email || linkedin || github || resume) && (
             <div>
               <h2 className="font-mono text-[11px] uppercase tracking-[0.18em] text-subtle">
                 Elsewhere
@@ -76,6 +78,33 @@ export function Footer() {
                     >
                       <LinkedInIcon className="size-4" />
                       LinkedIn
+                    </a>
+                  </li>
+                )}
+                {/* Rendered only once site.socials.github is configured. */}
+                {github && (
+                  <li>
+                    <a
+                      href={github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-foreground"
+                    >
+                      <GitHubIcon className="size-4" />
+                      GitHub
+                    </a>
+                  </li>
+                )}
+                {resume && (
+                  <li>
+                    <a
+                      href={resume}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-foreground"
+                    >
+                      <FileText className="size-4" aria-hidden="true" />
+                      Resume
                     </a>
                   </li>
                 )}

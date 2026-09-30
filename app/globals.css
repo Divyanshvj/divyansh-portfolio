@@ -202,7 +202,15 @@
   *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
+    /*
+     * Delays must be zeroed too. With `animation-fill-mode: both`, an
+     * element holds its `from` state (opacity 0) for the whole delay, so
+     * a staggered entrance would otherwise flash blank for up to 400ms
+     * even though the animation itself is instant.
+     */
+    animation-delay: 0ms !important;
     transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
     scroll-behavior: auto !important;
   }
 }

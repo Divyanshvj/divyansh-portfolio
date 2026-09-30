@@ -41,13 +41,18 @@ export const site = {
   phone: "",
 
   socials: {
-    /** TODO(content): GitHub profile URL. */
-    github: "",
+    /**
+     * TODO(content): paste your GitHub profile URL here, e.g.
+     * "https://github.com/your-username". This is the ONLY place it needs
+     * to be set - the contact section and footer pick it up automatically
+     * and render nothing while it is empty.
+     */
+    github: "https://github.com/Divyanshvj",
     linkedin: "https://www.linkedin.com/in/divyansh-vijay-1aa58823b/",
   },
 
-  /** TODO(content): place resume PDF in /public and set e.g. "/resume.pdf". */
-  resumePath: "",
+  /** Served from public/resume.pdf. Empty would hide every resume link. */
+  resumePath: "/resume.pdf",
 } as const;
 
 /** True only when a value has been supplied. Guards every optional render. */

@@ -148,7 +148,12 @@ export function Button(props: ButtonProps) {
       </ButtonContent>
     );
 
-    if (isExternal(href)) {
+    /*
+     * External links, and any link explicitly opened in a new tab (such as
+     * the resume PDF), render as plain anchors so the browser handles them
+     * directly rather than routing through next/link.
+     */
+    if (isExternal(href) || anchorProps.target === "_blank") {
       return (
         <a
           {...shared}

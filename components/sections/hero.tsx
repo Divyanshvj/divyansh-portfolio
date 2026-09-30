@@ -72,6 +72,9 @@ export function Hero() {
                   size="lg"
                   icon={cta.icon}
                   iconPosition={cta.variant === "primary" ? "right" : "left"}
+                  {...(cta.newTab
+                    ? { target: "_blank", rel: "noopener noreferrer" }
+                    : {})}
                   className="w-full sm:w-auto"
                 >
                   {cta.label}

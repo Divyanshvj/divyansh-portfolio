@@ -1,7 +1,7 @@
-import { Mail } from "lucide-react";
+import { FileText, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { LinkedInIcon } from "@/components/ui/brand-icons";
+import { GitHubIcon, LinkedInIcon } from "@/components/ui/brand-icons";
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Reveal } from "@/components/motion/reveal";
@@ -12,14 +12,18 @@ import { hasValue, site } from "@/content/site";
 /**
  * Contact.
  *
- * Renders only channels that have a verified value: email and LinkedIn.
- * GitHub and the resume stay suppressed until real values exist, so no
- * dead link or do-nothing button is ever shown. There is no contact form,
- * because no backend or email service is configured.
+ * Renders only channels that have a configured value. GitHub stays
+ * suppressed until site.socials.github is filled in, so no dead link or
+ * do-nothing button is ever shown. There is no contact form, because no
+ * backend or email service is configured.
  */
 export function Contact() {
   const email = hasValue(site.email) ? site.email : null;
-  const linkedin = hasValue(site.socials.linkedin) ? site.socials.linkedin : null;
+  const linkedin = hasValue(site.socials.linkedin)
+    ? site.socials.linkedin
+    : null;
+  const github = hasValue(site.socials.github) ? site.socials.github : null;
+  const resume = hasValue(site.resumePath) ? site.resumePath : null;
 
   return (
     <Section id="contact" labelledBy="contact-heading">
@@ -51,7 +55,7 @@ export function Contact() {
             </div>
           )}
 
-          {(email || linkedin) && (
+          {(email || linkedin || github || resume) && (
             <div className="mt-7 flex flex-col gap-3 border-t border-line pt-6 sm:flex-row sm:flex-wrap">
               {email && (
                 <Button
@@ -74,6 +78,33 @@ export function Contact() {
                   className="w-full sm:w-auto"
                 >
                   Connect on LinkedIn
+                </Button>
+              )}
+
+              {/* Rendered only once site.socials.github is configured. */}
+              {github && (
+                <Button
+                  href={github}
+                  variant="secondary"
+                  size="lg"
+                  icon={GitHubIcon}
+                  className="w-full sm:w-auto"
+                >
+                  GitHub
+                </Button>
+              )}
+
+              {resume && (
+                <Button
+                  href={resume}
+                  variant="ghost"
+                  size="lg"
+                  icon={FileText}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto"
+                >
+                  View Resume
                 </Button>
               )}
             </div>
