@@ -78,6 +78,9 @@ export function Hero() {
                   className="w-full sm:w-auto"
                 >
                   {cta.label}
+                  {cta.newTab && (
+                    <span className="sr-only"> (PDF, opens in a new tab)</span>
+                  )}
                 </Button>
               ))}
             </div>

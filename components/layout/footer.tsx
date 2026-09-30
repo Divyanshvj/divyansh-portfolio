@@ -61,7 +61,7 @@ export function Footer() {
                   <li>
                     <a
                       href={`mailto:${email}`}
-                      className="inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-foreground"
+                      className="inline-flex items-center gap-2 py-1 text-sm text-muted transition-colors hover:text-foreground"
                     >
                       <Mail className="size-4" aria-hidden="true" />
                       {email}
@@ -74,10 +74,11 @@ export function Footer() {
                       href={linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-foreground"
+                      className="inline-flex items-center gap-2 py-1 text-sm text-muted transition-colors hover:text-foreground"
                     >
                       <LinkedInIcon className="size-4" />
                       LinkedIn
+                      <span className="sr-only"> (opens in a new tab)</span>
                     </a>
                   </li>
                 )}
@@ -88,10 +89,11 @@ export function Footer() {
                       href={github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-foreground"
+                      className="inline-flex items-center gap-2 py-1 text-sm text-muted transition-colors hover:text-foreground"
                     >
                       <GitHubIcon className="size-4" />
                       GitHub
+                      <span className="sr-only"> (opens in a new tab)</span>
                     </a>
                   </li>
                 )}
@@ -101,10 +103,11 @@ export function Footer() {
                       href={resume}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-foreground"
+                      className="inline-flex items-center gap-2 py-1 text-sm text-muted transition-colors hover:text-foreground"
                     >
                       <FileText className="size-4" aria-hidden="true" />
                       Resume
+                      <span className="sr-only"> (PDF, opens in a new tab)</span>
                     </a>
                   </li>
                 )}

@@ -1,6 +1,18 @@
 import { Briefcase, Code, MapPin, Smartphone } from "lucide-react";
 import type { AboutContent } from "@/types";
+import { experiences } from "./experience";
 import { site } from "./site";
+
+/**
+ * Current role, derived from the most recent verified experience entry so
+ * the fact lives in exactly one place. Undefined if that entry is missing
+ * either value, in which case the fact is filtered out of the panel.
+ */
+const currentExperience = experiences[0];
+const currentRole =
+  currentExperience?.role && currentExperience.company
+    ? `${currentExperience.role}, ${currentExperience.company}`
+    : undefined;
 
 /**
  * About section.
@@ -8,6 +20,11 @@ import { site } from "./site";
  * Both paragraphs are built strictly from the verified profile summary
  * and the two verified roles. No years-of-experience totals, no metrics
  * beyond those stated on the resume, no superlatives.
+ *
+ * NOTE: the second paragraph restates the employment history in prose.
+ * That is an editorial choice rather than generated text, so when
+ * content/experience.ts changes, this paragraph must be updated by hand
+ * in the same commit. The `Currently` fact below updates itself.
  */
 export const about: AboutContent = {
   eyebrow: "About",
@@ -21,7 +38,8 @@ export const about: AboutContent = {
   facts: [
     {
       label: "Currently",
-      value: "Software Developer I, Cysco Pvt. Ltd.",
+      /** Derived - never hardcode the employer here. */
+      value: currentRole,
       icon: Briefcase,
     },
     {

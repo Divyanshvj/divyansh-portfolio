@@ -78,6 +78,7 @@ export function Contact() {
                   className="w-full sm:w-auto"
                 >
                   Connect on LinkedIn
+                  <span className="sr-only"> (opens in a new tab)</span>
                 </Button>
               )}
 
@@ -91,6 +92,7 @@ export function Contact() {
                   className="w-full sm:w-auto"
                 >
                   GitHub
+                  <span className="sr-only"> (opens in a new tab)</span>
                 </Button>
               )}
 
@@ -105,6 +107,7 @@ export function Contact() {
                   className="w-full sm:w-auto"
                 >
                   View Resume
+                  <span className="sr-only"> (PDF, opens in a new tab)</span>
                 </Button>
               )}
             </div>
